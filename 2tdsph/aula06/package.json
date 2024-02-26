@@ -1,0 +1,22 @@
+{
+  "name": "aula06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "decisoes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "decisoes": "node decisoes.js",
+    "temperatura": "node temperatura.js",
+    "temperatura2": "node temperatura2.js",
+    "temperatura3": "node temperatura3.js",
+    "funcoes": "node funcoes.js",
+    "classes": "node classes.js",
+    "classes2": "node classes2.js",
+    "classes3": "node classes3.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
