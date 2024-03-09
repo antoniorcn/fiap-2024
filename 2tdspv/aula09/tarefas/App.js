@@ -31,11 +31,11 @@ export default function App() {
       prioridade: 2,
       concluido: true}
   ] 
-  const listaVisuais = [];
+  
 
-  function mapa( obj ) { 
+  function mapa( obj, idx ) { 
     return (
-      <View>
+      <View key={idx}>
         <Text>{obj.nome}</Text>
         <Text>{obj.data}</Text>
         <Text>{obj.prioridade}</Text>
@@ -43,7 +43,7 @@ export default function App() {
     )
   }
 
-  lista.map( )
+  const listaVisuais = lista.map( mapa )
 
   return (
     <View style={estilos.principal}>
@@ -56,7 +56,7 @@ export default function App() {
                 alignItems: "center"}}>
           <Text style={estilos.titulo}>Gestão de Tarefas</Text>
         </ImageBackground>
-        
+     
       </View>
       <View style={{flex: 3, padding: 30}}>
         <Text>Nome do Tarefa:</Text>
@@ -71,7 +71,6 @@ export default function App() {
       <View style={{flex: 3, padding: 5}}>
         {listaVisuais}
       </View>
-
     </View>
   );
 }
