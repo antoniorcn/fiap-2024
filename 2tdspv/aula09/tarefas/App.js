@@ -1,9 +1,10 @@
 import {  Button, Image, 
-          ImageBackground, 
+          ImageBackground, ScrollView,
           StyleSheet, Switch, 
           Text, TextInput, View } from 'react-native';
 import { useState } from 'react';
 import imgTarefas from './assets/tarefas.webp';
+import imgCheck from './assets/check.jpg';
 
 const estilos = StyleSheet.create({
   principal: {
@@ -39,10 +40,22 @@ export default function App() {
 
   function mapa( obj, idx ) { 
     return (
-      <View key={idx}>
+      <View key={idx} style={{
+        backgroundColor: "lightyellow",
+        marginHorizontal: 5,
+        marginVertical: 10,
+        paddingHorizontal: 10,
+        borderColor: "black",
+        borderRadius: 10,
+        borderWidth: 1,
+      }}>
         <Text>{obj.nome}</Text>
         <Text>{obj.data}</Text>
         <Text>{obj.prioridade}</Text>
+        { obj.concluido &&  
+          <Image source={imgCheck} style={{width: 30, height: 30}}
+          resizeMethod="auto" resizeMode="center"/>
+        }
       </View>
     )
   }
@@ -89,9 +102,9 @@ export default function App() {
         }/>
         <Button title="Salvar" onPress={ salvar }/>
       </View>
-      <View style={{flex: 3, padding: 5}}>
+      <ScrollView style={{flex: 3, padding: 5}}>
         {listaVisuais}
-      </View>
+      </ScrollView>
     </View>
   );
 }
