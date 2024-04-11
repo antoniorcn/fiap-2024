@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, TextInput, View, Modal, FlatList} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Principal = () => {
   return (
@@ -10,7 +11,7 @@ const Principal = () => {
   );
 }
 
-const Login = () => {
+const Login = ( props ) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   return (
@@ -20,22 +21,42 @@ const Login = () => {
         value={email} onChangeText={setEmail}/>
       <TextInput  placeholder="Digite sua senha..." secureTextEntry={true}
         value={senha} onChangeText={setSenha}/>
-      <Button title="Login"/>
+      <Button title="Login" onPress={()=>{
+        props.onLogin( email, senha );
+      }}/>
+      {/* <Button title="Registrar Usuario" onPress={()=>{
+        props.onRegistrar();
+      }}/> */}
+      <Button title="Registrar Usuario" onPress={props.onRegistrar}/>
     </View>
   );
 }
 
+
 export default function App() {
-  const [nome, setNome] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [email, setEmail] = useState("");
-  const [chave, setChave] = useState("");
+  const [logado, setLogado] = useState(false);
+  const registrar = () => { 
+    const obj = {email: "admin@teste.com", senha: "123456"};
+    // AsyncStorage.setItem("REGISTRO", 
+    //     '{"email": "admin@teste.com", "senha": "123456"}');
+    AsyncStorage.setItem("REGISTRO", JSON.stringify( obj ));
+  }
+
+  const login = ( email, senha ) => { 
+    AsyncStorage.getItem("REGISTRO")
+    .then(( strObj ) => {
+      const obj = JSON.parse( strObj );
+      if (obj.email === email && obj.senha === senha) { 
+        setLogado(true);
+      }
+    })
+  }
 
   return (
     <View style={styles.container}>
       <Principal/>
-      <Modal>
-        <Login/>
+      <Modal visible={!logado}>
+        <Login onRegistrar={registrar} onLogin={login}/>
       </Modal>
     </View>
   );
