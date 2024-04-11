@@ -1,0 +1,1 @@
+GET https://tdsph-ee91f-default-rtdb.firebaseio.com/contatos.json HTTP/1.1

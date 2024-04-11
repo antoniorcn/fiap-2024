@@ -1,0 +1,8 @@
+PUT https://tdsph-ee91f-default-rtdb.firebaseio.com/contatos/-NvC3Aqx4MqVR1nsPsfa.json HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "m.santos@temp.com",
+    "nome": "Maria Santos",
+    "telefone": "(11) 2222-2222"
+}
