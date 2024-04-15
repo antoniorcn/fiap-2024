@@ -1,0 +1,8 @@
+PUT https://tdspv-9707b-default-rtdb.firebaseio.com/contatos/id00001.json HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome": "João Santos",
+    "telefone": "(11) 3333-3333",
+    "email": "joao@teste.com"
+}

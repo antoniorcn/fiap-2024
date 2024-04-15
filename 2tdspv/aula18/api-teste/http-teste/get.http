@@ -1,0 +1,2 @@
+GET https://tdspv-9707b-default-rtdb.firebaseio.com/contatos.json HTTP/1.1
+

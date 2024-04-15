@@ -1,0 +1,1 @@
+DELETE https://tdspv-9707b-default-rtdb.firebaseio.com/contatos/id00001.json HTTP/1.1
