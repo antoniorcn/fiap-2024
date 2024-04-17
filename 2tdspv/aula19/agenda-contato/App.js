@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, TextInput, View, ScrollView } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
@@ -38,9 +38,9 @@ const Formulario = (props) => {
   )
 }
 
-const Listagem = ({ onCarregar, onApagar, contatos, navigation }) => { 
-  const listaVisual = contatos.map( ( item )=> 
-    <View key={item.id}>
+const Item = ({item, onApagar}) => { 
+  return (
+    <View>
       <Text>{item.nome}</Text>
       <Text>{item.telefone}</Text>
       <Text>{item.email}</Text>
@@ -49,15 +49,17 @@ const Listagem = ({ onCarregar, onApagar, contatos, navigation }) => {
       }}/>
     </View>
   );
+}
 
+const Listagem = ({ onCarregar, onApagar, contatos, navigation }) => { 
   return (
     <View style={styles.listagem}>
       <Button title="Carregar" onPress={()=>{
         onCarregar();
       }} />
-      <ScrollView style={{flex: 1}}>
-        {listaVisual}
-      </ScrollView>
+      <FlatList data={contatos} renderItem={(flatProps)=>{
+        <Item {...flatProps} onApagar={onApagar}/>
+      }}/>
       <Button title="Voltar" onPress={()=>{
         navigation.goBack();
       }}/>
@@ -84,6 +86,7 @@ export default function App() {
       ToastAndroid.show("Erro ao salvar os dados: "+ err, 
       ToastAndroid.LONG)})
   }
+
   const carregar = () => {
     api.get("/contatos.json")
     .then( (resposta) => {
