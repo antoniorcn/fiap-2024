@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from 'react-native';
+import { ToastAndroid, Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
@@ -57,9 +57,9 @@ const Listagem = ({ onCarregar, onApagar, contatos, navigation }) => {
       <Button title="Carregar" onPress={()=>{
         onCarregar();
       }} />
-      <FlatList data={contatos} renderItem={(flatProps)=>{
+      <FlatList data={contatos} renderItem={(flatProps)=>
         <Item {...flatProps} onApagar={onApagar}/>
-      }}/>
+      }/>
       <Button title="Voltar" onPress={()=>{
         navigation.goBack();
       }}/>
