@@ -1,0 +1,2 @@
+DELETE https://tdsr-61a49-default-rtdb.firebaseio.com/contatos/0001.json HTTP/1.1
+

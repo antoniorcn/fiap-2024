@@ -1,0 +1,8 @@
+POST https://tdsr-61a49-default-rtdb.firebaseio.com/contatos.json HTTP/1.1
+Content-Type: application/json
+
+{
+        "nome": "Maria Silva",
+        "telefone": "(11) 2222-2222",
+        "email": "maria@teste.com"
+}
