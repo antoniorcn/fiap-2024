@@ -1,0 +1,7 @@
+POST https://c0340b30-2cf5-4d5a-8bda-781b47c70fb0-00-2nh7pag6isuee.janeway.replit.dev/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "user": "teste@teste.com",
+    "password": "abs123"
+}
