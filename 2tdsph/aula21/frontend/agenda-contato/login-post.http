@@ -1,0 +1,5 @@
+POST https://95abde56-028d-4c19-9cae-fd4c00cf54d9-00-1lji1cvl1zomi.riker.replit.dev/login HTTP/1.1
+Content-Type: application/json
+
+{"user": "admin",
+"password": "123456"}
