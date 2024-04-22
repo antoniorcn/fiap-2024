@@ -1,0 +1,5 @@
+arq1 = open("./nomes.txt", "w", encoding="utf-8")
+arq1.write("João\n")
+arq1.write("Maria\n")
+arq1.write("José\n")
+arq1.close()
