@@ -1,0 +1,8 @@
+POST https://9b7d1242-9a34-4075-b3d7-390f83104fa3-00-2g2cavrd1sd4e.kirk.replit.dev/contato HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "nome": "João Silva",
+    "telefone": "(11) 1111-1111",
+    "email": "joao@teste.com" 
+}
