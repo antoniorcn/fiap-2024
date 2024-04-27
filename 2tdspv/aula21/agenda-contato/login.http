@@ -1,0 +1,7 @@
+POST https://36ee1d08-7f20-4431-b757-ca72badcc18e-00-2z0ssik3d28ia.riker.replit.dev/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "user": "admin",
+    "password": "abc123"
+}
