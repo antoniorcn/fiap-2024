@@ -9,7 +9,10 @@ while linha != "":
     #    0           1          2
     # ['joao    ', '(11)1111-1111, '23']
     if linha != "":
+        # linha ==> "joao;(11)1111-1111;23"
         dados = linha.split(";")
+        #               0          1            2
+        # dados ==> ['joao', '(11)1111-1111', '23']
         print("Dados: ", dados)
         d = {
                 # 'joao    '
