@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "teste-maps",
+    "slug": "teste-maps",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.antoniocarvalho.testemaps",
+      "config": { 
+        "googleMaps": {
+          "apiKey": "AIzaSyB4pAu8J5rmlvNR6BEFbbyspu_JTfJ_diw"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
