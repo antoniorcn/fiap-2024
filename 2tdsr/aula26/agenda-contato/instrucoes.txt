@@ -1,0 +1,11 @@
+* Criar um projeto novo
+* Criar um App principal que conterá um 
+    navigation por abas com uma aba para cadastrar e 
+    outra aba para listar
+* A aba cadastrar deverá mostrar um componente chamado
+Formulario que conterá um formulario para cadastrar 
+contato  (nome, telefone, email) com um botao gravar
+que invocará o método gravar passando os dados digitados
+(nome, telefone, email) como um objeto para a função gravar
+* Fazer a aba listagem que deverá mostrar um FlatList
+apontando para a lista de contatos
