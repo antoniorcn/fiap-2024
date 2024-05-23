@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agenda de Contato"
+        android:textAlignment="center"
+        android:textSize="32sp" />
+
+    <EditText
+        android:id="@+id/txtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nome Completo"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/txtTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="DDD + Telefone"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnGravar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gravar" />
+
+    <Button
+        android:id="@+id/btnPesquisar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pesquisar" />
+</LinearLayout>
