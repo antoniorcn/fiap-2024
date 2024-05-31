@@ -22,7 +22,7 @@
       "package":"com.teste.maps",
       "config": {
         "googleMaps": { 
-            "apiKey": "AIzaSyDh7070C44EsfOSP_qFjbT2SEdsyxTPbiQ"
+            "apiKey": ""
 			  }   
       }
     },
