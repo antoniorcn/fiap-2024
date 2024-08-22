@@ -21,8 +21,9 @@ class AppNome( App ):
         box_telefone = BoxLayout(orientation="horizontal",
                                 size_hint=(1.0, 0.2))
         
-        lbl_nome = Label(text="Nome:", 
+        lbl_nome = Label(text="Nome:",
                         size_hint = (0.3, 1.0))
+        self.txt_nome.hint_text = "Digite seu nome completo"
         lbl_telefone = Label(text="Telefone: ", 
                             size_hint = (0.3, 1.0))
         
