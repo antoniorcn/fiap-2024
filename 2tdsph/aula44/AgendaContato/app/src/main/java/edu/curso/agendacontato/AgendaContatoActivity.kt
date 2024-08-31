@@ -52,12 +52,10 @@ class AgendaContatoActivity : Activity() {
 
             val mediaType = "application/json".toMediaTypeOrNull()
             val body = jsonContato.toRequestBody(mediaType)
-
             val request = Request.Builder()
                 .url(url)
                 .post(body)
                 .build()
-
             val response = object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.e("AGENDA-CONTATO", e.message.toString())
