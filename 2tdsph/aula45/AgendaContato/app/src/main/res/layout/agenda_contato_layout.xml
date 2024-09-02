@@ -3,7 +3,7 @@
     <data>
         <variable
             name="contato"
-            type="edu.curso.agendacontato.Contato" />
+            type="edu.curso.agendacontato.model.Contato" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

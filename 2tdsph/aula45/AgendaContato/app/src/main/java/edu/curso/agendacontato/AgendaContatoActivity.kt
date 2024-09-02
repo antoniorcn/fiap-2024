@@ -19,12 +19,7 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import okio.IOException
-
-data class Contato(
-    var nome : String = "",
-    var email : String = "",
-    var telefone : String = ""
-)
+import edu.curso.agendacontato.model.Contato
 
 class AgendaContatoActivity : Activity() {
 
@@ -102,23 +97,39 @@ class AgendaContatoActivity : Activity() {
                         // Tipo do Hashmap para converter o texto JSON para este Map
                         val type = object : TypeToken<HashMap<String?, Contato?>?>() {}.type
                         // Converte o texto Json para o HashMap
-                        val elemento: HashMap<String?, Contato?> = gson.fromJson(textoJson, type)
+                        try {
+                            val elemento: HashMap<String?, Contato?> =
+                                gson.fromJson(textoJson, type)
 
-                        runOnUiThread {
-                            elemento.values.forEach {
-                                // Para cada valor no Hashmap, pega o Contato na variavel
-                                // it e coloca os dados na tela
-                                Log.v("AGENDA-CONTATO", it.toString())
-                                edtNome.setText(it?.nome)
-                                edtTelefone.setText(it?.telefone)
-                                edtEmail.setText(it?.email)
+                            runOnUiThread {
+                                elemento.values.forEach {
+                                    // Para cada valor no Hashmap, pega o Contato na variavel
+                                    // it e coloca os dados na tela
+                                    Log.v("AGENDA-CONTATO", it.toString())
+                                    if (it != null) {
+                                        contato?.nome = it.nome
+                                        contato?.telefone = it.telefone
+                                        contato?.email = it.email
+                                    }
+                                    // edtNome.setText(it?.nome)
+                                    // edtTelefone.setText(it?.telefone)
+                                    // edtEmail.setText(it?.email)
+                                }
+
+                                val toast = Toast.makeText(
+                                    this@AgendaContatoActivity,
+                                    "Pesquisa feita com sucesso", Toast.LENGTH_LONG
+                                )
+                                toast.show()
                             }
-
-                            val toast = Toast.makeText(
-                                this@AgendaContatoActivity,
-                                "Pesquisa feita com sucesso", Toast.LENGTH_LONG
-                            )
-                            toast.show()
+                        } catch (err : Exception) {
+                            runOnUiThread {
+                                val toast = Toast.makeText(
+                                    this@AgendaContatoActivity,
+                                    "Contato não encontrado", Toast.LENGTH_LONG
+                                )
+                                toast.show()
+                            }
                         }
                     }
                 }
