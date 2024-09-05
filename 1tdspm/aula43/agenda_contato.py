@@ -120,8 +120,8 @@ def atualizar_db( nome : str, contato: Contato ) -> bool:
     sql = """UPDATE agenda SET telefone = :1, email = :2, nascimento = :3
              WHERE nome = :4"""
     try:
-        cursor.execute(sql, (contato.telefone, 
-                             contato.email, 
+        cursor.execute(sql, (contato.telefone,
+                             contato.email,
                              contato.nascimento,
                              nome))
         conexao.commit()
