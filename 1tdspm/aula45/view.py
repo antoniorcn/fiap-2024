@@ -35,7 +35,10 @@ class View:
                     contato = self.ler_dados_contato()
                     self.control.cadastrar( contato )
                 case 'P':
-                    self.control.pesquisar()
+                    contatos = self.control.pesquisar()
+                    for contato in contatos:
+                        print("=" * 40)
+                        print(contato)
                 case 'R':
                     self.control.remover()
                 case 'A':

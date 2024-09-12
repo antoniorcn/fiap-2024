@@ -10,7 +10,9 @@ class Controller:
         print("Response: ", response)
 
     def pesquisar(self):
-        print("Pesquisar contatos")
+        print("Pesquisando contatos")
+        contatos = self.servico.pesquisar_firebase()
+        return contatos
 
     def remover(self):
         print("Remover um contato especifico")

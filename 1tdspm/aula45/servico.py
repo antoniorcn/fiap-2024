@@ -1,4 +1,5 @@
 import requests
+import json
 
 class Servico:
 
@@ -17,3 +18,8 @@ class Servico:
         }
         response = requests.post( self.url, json=contato_dict, timeout=100 )
         return response
+    
+    def pesquisar_firebase(self):
+        response = requests.get(self.url, timeout=100)
+        todos_contatos = json.loads(response.text)
+        return list(todos_contatos.values())
