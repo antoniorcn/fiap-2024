@@ -22,8 +22,5 @@ class ContatoListActivity : Activity() {
         val recyclerView = findViewById<RecyclerView>(R.id.contato_rcv)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-
-
     }
 }
