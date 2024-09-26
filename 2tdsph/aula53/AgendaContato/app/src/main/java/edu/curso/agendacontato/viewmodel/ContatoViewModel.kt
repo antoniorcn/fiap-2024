@@ -8,4 +8,8 @@ class ContatoViewModel : ViewModel() {
 
     var lista = MutableLiveData<ArrayList<Contato>>()
 
+    init {
+        lista.value = ArrayList()
+    }
+
 }

@@ -15,7 +15,7 @@ class ContatoAdapter(
     override fun onCreateViewHolder(parent : ViewGroup,
                                     viewType : Int ) : ContatoViewHolder {
         val view = inflater.inflate(R.layout.contato_lista_item_layout,
-            parent)
+            parent, false)
         return ContatoViewHolder( view )
     }
     override fun onBindViewHolder(holder : ContatoViewHolder, pos : Int) {
