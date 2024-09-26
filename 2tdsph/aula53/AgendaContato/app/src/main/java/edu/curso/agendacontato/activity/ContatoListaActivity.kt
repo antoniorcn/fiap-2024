@@ -1,8 +1,10 @@
 package edu.curso.agendacontato.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.curso.agendacontato.R
@@ -22,6 +24,12 @@ class ContatoListaActivity : Activity() {
         val rcv = findViewById<RecyclerView>(R.id.rcv_contato_lista)
         rcv.adapter = adaptador
         rcv.layoutManager = LinearLayoutManager(this)
+
+        val btnVoltar = findViewById<Button>(R.id.btn_voltar)
+        btnVoltar.setOnClickListener {
+            val intent1 = Intent(this, ContatoFormActivity::class.java)
+            startActivity(intent1)
+        }
 
     }
 }
