@@ -1,0 +1,15 @@
+GET http://localhost HTTP/1.1
+
+
+###
+POST http://localhost HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome": "João Silva",
+    "email": "joao@teste.com",
+    "telefone": "(11) 1111-1111"
+}
+
+
+
