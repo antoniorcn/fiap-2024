@@ -1,4 +1,6 @@
-GET http://profantonioneto.pythonanywhere.com HTTP/1.1
+GET https://profantonioneto.pythonanywhere.com HTTP/1.1
+
+
 
 
 ###

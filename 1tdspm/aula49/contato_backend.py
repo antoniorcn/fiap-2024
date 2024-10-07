@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+import os
 from contato_repository import ContatoRepository
 from contato_model import Contato
 
@@ -49,8 +50,9 @@ class ContatoBackend( BaseHTTPRequestHandler ):
             self.wfile.write("Erro ao acessar o banco de dados".encode('utf-8'))
 
 if __name__=="__main__":
+    ip_server = os.environ.get("FIAP_IP_SERVER")
     repository = ContatoRepository()
     print("Backend iniciado")
-    http_server = HTTPServer( ('127.0.0.1', 80), ContatoBackend )
+    http_server = HTTPServer( (ip_server, 80), ContatoBackend )
     print("HTTP Server iniciado aguardando conexões")
     http_server.serve_forever()

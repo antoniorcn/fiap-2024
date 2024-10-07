@@ -1,0 +1,5 @@
+GET https://api.weatherapi.com/v1/current.json?key=16a4068f7acd49c88cb120121240710&q=Sao Paulo&aqi=no HTTP/1.1
+
+
+### Time Zone
+GET https://api.weatherapi.com/v1/timezone.json?key=16a4068f7acd49c88cb120121240710&q=New York HTTP/1.1
