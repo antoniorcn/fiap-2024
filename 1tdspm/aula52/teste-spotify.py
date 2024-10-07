@@ -1,9 +1,10 @@
 import requests
 import json
 import os
+import certifi
 
-CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
-CLIENT_SECRET = os.environ['SPOTIFY_CLIENT_SECRET']
+CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 
 parametros = {
     'grant_type': 'client_credentials',
@@ -14,7 +15,10 @@ parametros = {
 headers = { 
     'Content-Type': 'application/x-www-form-urlencoded'
 }
-response = requests.post("https://accounts.spotify.com/api/token", params=parametros, headers=headers)
+
+print("Certification File: ", certifi.where())
+
+response = requests.post("https://accounts.spotify.com/api/token", verify=False, params=parametros, headers=headers)
 # print(response.content)
-dicionario = json.loads(response.content)
-print(dicionario)
+# dicionario = json.loads(response.content)
+print(response.content)
