@@ -5,6 +5,9 @@ from contato_repository import ContatoRepository
 from contato_model import Contato
 
 class ContatoBackend( BaseHTTPRequestHandler ):
+    def do_HEAD(self):
+        self._set_headers()
+        
     def do_GET(self):
         print("Conexão GET recebida")
         try:

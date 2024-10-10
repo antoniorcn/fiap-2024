@@ -3,3 +3,32 @@ GET https://api.weatherapi.com/v1/current.json?key=16a4068f7acd49c88cb1201212407
 
 ### Time Zone
 GET https://api.weatherapi.com/v1/timezone.json?key=16a4068f7acd49c88cb120121240710&q=New York HTTP/1.1
+
+
+### Requires User Autorization
+GET https://accounts.spotify.com/authorize?
+response_type: 'code',
+  client_id: clientId,
+  scope,
+  code_challenge_method: 'S256',
+  code_challenge: codeChallenge,
+  redirect_uri: redirectUri,
+
+
+
+
+#### Exchange Authorization token for Access Token
+POST https://api.spotify.com/v1/api/token HTTP/1.1
+client_id: clientId,
+grant_type: 'authorization_code',
+code: 
+redirect_uri: redirectUri,
+code_verifier: codeVerifier,
+
+
+
+#### Test Spotify
+GET https://api.spotify.com/v1/me/player HTTP/1.1
+Authorization: Bearer BQAvm838wkPvdxiq2OBH7rqO8bbbVIQK7GiO9aEU2kdbUijbu3cSUswK-NPLewgAJ7z_V4O-nXugZJ7CiDMFsDc_8YGxPw3GWpuTFmB-HzJ0l08yEBA
+
+

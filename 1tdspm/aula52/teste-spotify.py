@@ -17,8 +17,19 @@ headers = {
 }
 
 print("Certification File: ", certifi.where())
+print("CLIENT_ID: ", CLIENT_ID)
+print("CLIENT_SECRET: ", CLIENT_SECRET)
 
-response = requests.post("https://accounts.spotify.com/api/token", verify=False, params=parametros, headers=headers)
-# print(response.content)
-# dicionario = json.loads(response.content)
-print(response.content)
+response = requests.post("https://accounts.spotify.com/api/token", params=parametros, headers=headers)
+dicionario = json.loads(response.content)
+access_token=dicionario['access_token']
+print("Access Token: ", access_token)
+
+# Check Player State
+headers = { 
+    'Authorization': f"Bearer {access_token}"
+}
+print("Headers: ", headers)
+response = requests.get("https://api.spotify.com/v1/me/player", headers=headers)
+dicionario = json.loads(response.content)
+print(dicionario)
