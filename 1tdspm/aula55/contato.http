@@ -15,5 +15,23 @@ Content-Type: application/json
     "telefone": "(11) 2222-2222"
 }
 
+###
+HEAD http://localhost HTTP/1.1
+
+
+###
+POST https://fiap-2024.onrender.com HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome": "Malu Mader",
+    "email": "malu@teste.com",
+    "telefone": "(021) 9999-9999"
+}
+
+
+###
+GET https://fiap-2024.onrender.com HTTP/1.1
+
 
 
