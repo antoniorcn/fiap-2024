@@ -1,5 +1,7 @@
 package edu.curso.testelogin
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -29,12 +31,17 @@ class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<TesteViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.currentPrefs.value = this.getPreferences(Context.MODE_PRIVATE)
         Log.d("TESTE", "API KEY: ${BuildConfig.API_KEY}")
         setContent {
             TesteLoginTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    LoginPage(viewModel)
+                    if (viewModel.isLogged()) {
+                        Text("Já está logado", fontSize = 32.sp)
+                    } else {
+                        LoginPage(viewModel)
+                    }
                 }
             }
         }

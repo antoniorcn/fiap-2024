@@ -1,5 +1,6 @@
 package edu.curso.testelogin
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -16,11 +17,12 @@ import java.io.IOException
 
 class TesteViewModel : ViewModel() {
 
+    var currentPrefs: MutableState<SharedPreferences?> = mutableStateOf(null)
     val URL_AUTH_BASE="https://identitytoolkit.googleapis.com/v1"
 
-    var token : MutableState<String> = mutableStateOf<String>("")
-    var email : MutableState<String> = mutableStateOf<String>("")
-    var senha : MutableState<String> = mutableStateOf<String>("")
+    var token : MutableState<String> = mutableStateOf("")
+    var email : MutableState<String> = mutableStateOf("")
+    var senha : MutableState<String> = mutableStateOf("")
 
     val httpClient = OkHttpClient()
     val gson = Gson()
@@ -32,8 +34,10 @@ class TesteViewModel : ViewModel() {
             "returnSecureToken": true
         }""".trimIndent()
 
+        val URL = "$URL_AUTH_BASE/accounts:signUp?key=${BuildConfig.API_KEY}"
+        Log.d("TESTE", "Url de acesso: $URL")
         val request = Request.Builder()
-            .url("$URL_AUTH_BASE/accounts:signUp?key=${BuildConfig.API_KEY}")
+            .url(URL)
             .post( usuarioJson.toRequestBody(
                 "application/json".toMediaType()))
             .build()
@@ -49,9 +53,18 @@ class TesteViewModel : ViewModel() {
                         .fromJson(corpo, SignUpResponseDTO::class.java)
                     token.value = signupResponse.idToken
                     Log.d("TESTE", "Token recebido: ${token.value}")
+                    val prefs = currentPrefs.value
+                    prefs?.edit()?.putString("TOKEN", token.value)?.apply()
+
                 }
             }
         }
         httpClient.newCall(request).enqueue(response)
+    }
+
+    fun isLogged() : Boolean {
+        token.value = if (token.value == "")
+            currentPrefs.value?.getString("TOKEN", "").toString() else token.value
+        return token.value != ""
     }
 }
