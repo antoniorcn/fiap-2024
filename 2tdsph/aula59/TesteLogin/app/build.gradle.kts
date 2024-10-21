@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -19,10 +21,18 @@ android {
             useSupportLibrary = true
         }
 
+        //load the values from .properties file
+        val keystoreFile = project.rootProject.file("apikeys.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+
+        //return empty key in case something goes wrong
+        val apiKey = properties.getProperty("API_KEY") ?: ""
+
         buildConfigField(
             "String",
             "API_KEY",
-            "\"${project.findProperty("API_KEY")}\""
+            "\"$apiKey\""
         )
     }
 
