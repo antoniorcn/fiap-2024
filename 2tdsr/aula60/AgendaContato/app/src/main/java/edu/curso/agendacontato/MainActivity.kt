@@ -91,8 +91,8 @@ fun ContactAgendaScreen(nome: MutableState<String>,
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            ActionButton(text = "Gravar", onClick={})
-            ActionButton(text = "Pesquisar", onClick={})
+            ActionButton(text = "Gravar", onClick=onGravar)
+            ActionButton(text = "Pesquisar", onClick=onPesquisar)
         }
     }
 }
