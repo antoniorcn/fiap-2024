@@ -78,8 +78,8 @@ class MainActivity : ComponentActivity() {
     }
 
     fun registrar() {
-        val url = "$URL_BASE/v1/accounts:signUp?key=$APIKEY"
-        Log.d("URL: $url")
+        val url = "$URL_BASE/accounts:signUp?key=$APIKEY"
+        Log.d("LOGIN", "URL: $url")
         val request = Request.Builder()
             .url(url)
             .post("""
