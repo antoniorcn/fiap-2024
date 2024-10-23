@@ -2,6 +2,8 @@ package edu.curso.login
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -32,11 +34,26 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.gson.Gson
 import edu.curso.login.ui.theme.LoginTheme
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import java.io.IOException
 
 class MainActivity : ComponentActivity() {
     val email = mutableStateOf<String>("")
     val senha = mutableStateOf<String>("")
+    val APIKEY = "AIzaSyAPsT_7KdOxKAi7mNERSMJgJQ-gnINawpo"
+    val URL_BASE = "https://identitytoolkit.googleapis.com/v1"
+
+    val httpClient = OkHttpClient()
+    val gson = Gson()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lerEmail()
@@ -46,12 +63,12 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     LoginScreen(email, senha, onGravar = {
                         gravarEmail()
+                        registrar()
                     })
                 }
             }
         }
     }
-
     fun gravarEmail() {
         val prefs = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         prefs
@@ -59,12 +76,49 @@ class MainActivity : ComponentActivity() {
             .putString("EMAIL", email.value)
             .apply()
     }
+
+    fun registrar() {
+        val url = "$URL_BASE/v1/accounts:signUp?key=$APIKEY"
+        Log.d("URL: $url")
+        val request = Request.Builder()
+            .url(url)
+            .post("""
+                {   "email": "${email.value}",
+                    "password": "${senha.value}",
+                    "returnSecureToken": true
+                }
+            """ .trimIndent()
+                .toRequestBody("application/json".toMediaType()))
+            .build()
+
+        val response = object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                Log.d("LOGIN", "Registrado com sucesso ${response.body?.string()}")
+                runOnUiThread {
+                    Toast.makeText(this@MainActivity,
+                        "Registrado com sucesso",
+                        Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@MainActivity,
+                        "Erro ao registrar no firebase",
+                        Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        httpClient.newCall(request).enqueue(response)
+
+    }
+
     fun lerEmail() {
         val prefs = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         email.value = prefs.getString("EMAIL", "") ?: ""
     }
 }
-
 @Composable
 fun LoginScreen(email: MutableState<String>,
                 senha: MutableState<String>,
